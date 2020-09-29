@@ -21,6 +21,7 @@ struct Aluno{
 
 struct Nodo{
     Aluno alu;
+    string placa;
     Nodo *proximo;
 };
 
@@ -34,6 +35,7 @@ public:
     int  size();
     void debug();
     void print();
+    Nodo* front();
     
 private:
     Nodo *primeiro;

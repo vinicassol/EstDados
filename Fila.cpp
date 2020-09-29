@@ -42,6 +42,38 @@ void Fila::push(Nodo *novoItem)
 void Fila::debug()
 {
     cout << "Tamanho da Fila: " << s << endl;
-    cout << "Primeiro da Fila: " << primeiro->alu.nome << endl;
-    cout << "Ultimo da Fila: " << ultimo->alu.nome << endl;
+    if(s>0)
+    {
+        cout << "Primeiro da Fila: " << primeiro->placa << endl;
+        cout << "Ultimo da Fila: " << ultimo->placa << endl;
+    }
+}
+
+void Fila::pop()
+{
+    if(empty()){
+        cout << "Fila vazia, nao ha o que remover.\n";
+        
+     }else if (s==1)
+     {
+         //zera a estrutura quando remove o ultimo
+         primeiro = 0;
+         ultimo = 0;
+         s = 0;
+     }
+     else
+     {
+         primeiro = primeiro->proximo;
+         s--;
+     }
+}
+
+Nodo* Fila::front()
+{
+    return primeiro;
+}
+
+int Fila::size()
+{
+    return s;
 }
