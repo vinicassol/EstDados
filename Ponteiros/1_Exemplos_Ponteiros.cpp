@@ -1,60 +1,72 @@
 #include <iostream>
 using namespace std;
 
-int soma (int a, int b)
+//Passagem por valor - Copia
+int soma(int a, int b)
 {
-    return (a+b);
+    return a+b;
 }
-
+// Passagem por Referencia
 int somaRef(int &a, int &b)
 {
-    return (a+b);
+    return a+b;
 }
-
-void troca2( int &v1, int &v2)
+// Passagem por ponteiros
+int somaPtr(int *a, int *b)
 {
-    int aux  = v1;
-    v1 = v2;
-    v2 = aux;
+    return *a+*b;
 }
 
-int main() {
+//Ao trabalhar com ponteiros e referencias, consigo modificar valores fora da função
+int troca(int &a, int &b)
+{
+    int auxiliar = a;
+    a = b;
+    b = auxiliar;
+    
+    return a+b;
+}
+
+int main()
+{
+    string player = "Vini";
     int vida = 100;
-    int *pVida; // variaveis do tipo ponteiro são identificadas pelo asterisco
+    int saude = 80;
+    int *pVida; // asterisco indica que a variavel eh do tipo ponteiro
     
-    pVida = 0; // Inicializado como nulo. Não aponta para lugar nenhum
-    
-    //dizer para onde o ponteiro aponta
-    // variaveis ponteiros armazenam o endereço de outra variavel
     pVida = &vida;
     
-    string nome = "Vini";
+    cout << "Conteudo da variavel Player: " <<  player <<endl;
+    //Com o &, acessamos o endereço da variavel
+    cout << "End da variavel Player: " << &player << endl;
     
-    cout << vida << endl; // valor armazenado na variavel
-    cout << & vida << endl; // endereço de memória da variável
+    cout << "Conteudo da variavel vida: " << vida << endl;
+    cout << "End da variavel vida: " << &vida << endl;
     
-    // A variável nome, guarda o dado "Vini"que é do tipo string no endereço de memória 0x7ffeefbff460
-    cout << nome << endl;
-    cout << &nome << endl;
+    cout << "Conteudo da variavel pVida: " << pVida << endl;
+    cout << "End da variavel pVida: " << &pVida << endl;
+    cout << "Dado apontado pelo ponteiro *pVida: " << *pVida << endl;
     
+    pVida = &saude;
+    cout << "Conteudo da variavel pVida: " << pVida << endl;
+    cout << "Dado apontado pelo ponteiro *pVida: " << *pVida << endl;
     
-    cout << "Dado armazenado na variavel Vida: " << vida << endl;
-    cout << "End de memoria da variavel vida: " << &vida << endl;
-    cout << "Dado armazenado na variavel pVida: " << pVida << endl;
-    cout << "End de memoria da variavel pVida: " << &pVida << endl;
-    cout << "O dado que esta sendo apontado pelo ponteiro pVida: " << *pVida << endl;
+    int v1, v2, v3, v4, v5;
     
-    int v1 = 2;
-    int v2 = 5;
-    int v3 = 8;
-    int v4 = 77;
+    v1 = 4;
+    v2 = 8;
+    v3 = 21;
+    v4 = 5;
+    v5 = 11;
     
     cout << soma(v1, v2) << endl;
+    cout << somaRef(v2, v3) << endl;
+    cout << somaPtr(&v5, &v4) << endl;
     
-    cout << somaRef(v3, v4) << endl;
+    int soma = troca(v4, v5);
     
-    troca2(v2, v4);
-    cout << "V2: " << v2 << endl << "V4: " << v4 << endl;
+    cout << "Valor somado: " << soma << endl;
+    cout << "V4: " << v4 << endl << "V5: " << v5 << endl;
     
     return 0;
 }
