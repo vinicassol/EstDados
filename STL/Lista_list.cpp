@@ -16,6 +16,26 @@ void imprimeLista(list<string> l)
     }
 }
 
+int retornaPos(string nome, list<string> l ) // retornar a posicao de um valor na lista
+{
+   list<string>::iterator it; //ponteiro para me ajudar a percorrer a lista
+
+  int pos = 0;
+  int cont = 0;
+
+   for(it = l.begin(); it!= l.end(); it++) // Passa por todos os registros
+   {
+  
+     if(nome == *it)
+     {
+        pos = cont;
+     }
+    cont++;
+   }
+
+  return pos;
+
+}
 int main()
 {
     //Criação de uma lista
@@ -24,6 +44,16 @@ int main()
     
     list<string> alunos = {"Eduarda", "Johann", "Bruna"}; // iniciei a lista com 3 valores
     
+/*
+Eduarda, Johann, Bruna.
+Reverse() = Bruna, Johann, Eduarda
+
+Sort() = Bruna, Eduarda, Johan
+
+*/
+
+
+
     alunos.pop_front();
     
     alunos.push_back("Victor"); //insere no final da lista
@@ -50,16 +80,29 @@ int main()
     cout << "Qunatidade de alunos:" << alunos.size() << endl;
     imprimeLista(alunos);
     
+
+    //Remover Por nome
+
+   int p = retornaPos("Jennifer", alunos); // Descubro a posicao do valor
+   it = alunos.begin(); // me posiciono no começo da lista
+   advance(it, p); // desloco o iterador até a posicao do valor que vou remover
+   alunos.erase(it); // removo aquela posicao
+
+  //ou simplesmente uso o metodo remove
+   alunos.remove("Johann");
+
     alunos.reverse();
     cout << "Qunatidade de alunos:" << alunos.size() << endl;
     imprimeLista(alunos);
     
+
+
     alunos.clear();
     cout << "Qunatidade de alunos:" << alunos.size() << endl;
     imprimeLista(alunos);
     
     
-    /*Exercicio:
+    /*Exercicio -> Finalizar o exercicio e entregar o CPP no Blackboard
     
      Criar um menu para:
      - Imprimir Lista (ordem original, imprimir ordenado, imprimir na ordem inversa)
